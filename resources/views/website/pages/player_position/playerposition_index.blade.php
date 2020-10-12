@@ -18,9 +18,9 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>Nação</h1>
+                <h1>Posição do Jogador</h1>
 
-                <a class="btn btn-primary" href="{{ Route('admin.nation.create') }}">Criar Nação</a>
+                <a class="btn btn-primary" href="{{ Route('admin.nation.create') }}">Criar Posição</a>
 
                 <br>
 
@@ -34,14 +34,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($nations as $nation)
+                        {{-- @forelse ($nations as $nation)
                             <tr>
                                 <td>{{ $nation->name }}</td>
                                 <td>{{ $nation->initials }}</td>
                             </tr>
                         @empty
                             <td colspan="2">Nenhuma nação criada...</td>
-                        @endforelse
+                        @endforelse --}}
                     </tbody>
                 </table>
             </div>

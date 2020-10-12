@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Nationality;
-use Validator;
 
-class NationController extends Controller
+class PlayerPositionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +13,7 @@ class NationController extends Controller
      */
     public function index()
     {
-        $nations = Nationality::all();
-
-        return view('website.pages.nation.nation_index', compact([
-            'nations'
-        ]));
+        return view('website.pages.player_position.playerposition_index');
     }
 
     /**
@@ -29,7 +23,7 @@ class NationController extends Controller
      */
     public function create()
     {
-        return view('website.pages.nation.nation_create');
+        //
     }
 
     /**
@@ -40,19 +34,7 @@ class NationController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $this->validatorNations($request);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors());
-        }
-
-        $dataClients = $request->all();
-
-        Nationality::create([
-            'name' => $dataClients['name'],
-            'initials'=> $dataClients['initials'],
-        ]);
-
-        return redirect()->route('admin.nation.index')->with('message','Nação criada com sucesso...');
+        //
     }
 
     /**
@@ -98,20 +80,5 @@ class NationController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    protected function validatorNations($request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'initials' => 'required',
-        ]);
-
-        $validator->setAttributeNames([
-            'name' => 'Nome',
-            'initials' => 'Sigla',
-        ]);
-
-        return $validator;
     }
 }

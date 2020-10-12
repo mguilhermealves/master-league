@@ -1,12 +1,12 @@
 @extends('website.layouts.app')
 
-@section('title', '- Criar Nação')
+@section('title', '- Criar Posição')
     
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Criar Nação</h1>
+                <h1>Criar Posição</h1>
                 <form class="form" action="{{ route('admin.nation.store') }}" method="post">
                     @csrf
 

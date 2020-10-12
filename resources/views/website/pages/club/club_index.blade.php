@@ -3,13 +3,6 @@
 @section('title', ' - Clubes')
     
 @section('content')
-    @if ($errors->any())
-    <div class="alert alert-danger" role="alert">
-        @foreach ($errors->all() as $error)
-            {{$error}} <br />
-        @endforeach
-    </div>
-    @endif
     @if (session('message'))
       <div class="alert alert-success" role="alert">
         {{session('message')}}
@@ -18,32 +11,34 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>Nação</h1>
+                <h1>Clube</h1>
 
-                <a class="btn btn-primary" href="{{ Route('club.create') }}">Criar Clube</a>
+                <a class="btn btn-primary" href="{{ Route('admin.club.create') }}">Criar Clube</a>
 
                 <br>
 
                 <hr>
 
-                {{-- <table class="table table-striped">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Nome</th>
                             <th>Sigla</th>
+                            <th>País</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($nations as $nation)
+                        @forelse ($clubs as $club)
                             <tr>
-                                <td>{{ $nation->name }}</td>
-                                <td>{{ $nation->initials }}</td>
+                                <td>{{ $club->name }}</td>
+                                <td>{{ $club->initials }}</td>
+                                <td>{{ $club->user_id }}</td>
                             </tr>
                         @empty
-                            <td colspan="2">Nenhuma nação criada...</td>
+                            <td colspan="3">Nenhum clube criado...</td>
                         @endforelse
                     </tbody>
-                </table> --}}
+                </table>
             </div>
         </div>
     </div>

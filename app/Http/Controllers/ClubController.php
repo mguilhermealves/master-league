@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\{Club, Nationality};
+use Validator;
 
 class ClubController extends Controller
 {
@@ -13,7 +15,11 @@ class ClubController extends Controller
      */
     public function index()
     {
-        //
+        $clubs = Club::all();
+
+        return view('website.pages.club.club_index', compact([
+            'clubs'
+        ]));
     }
 
     /**
@@ -23,7 +29,10 @@ class ClubController extends Controller
      */
     public function create()
     {
-        //
+        $nations = Nationality::all();
+        return view('website.pages.club.club_create', compact([
+            'nations',
+        ]));
     }
 
     /**
@@ -34,7 +43,21 @@ class ClubController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $this->validatorClubs($request);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors());
+        }
+
+        $dataClubs = $request->all();
+
+        Club::create([
+            'name' => $dataClubs['name'],
+            'initials' => $dataClubs['initials'],
+            'nation_id' => $dataClubs['nation_id'],
+            'user_id' => 1,
+        ]);
+
+        return redirect()->route('admin.club.index')->with('message', 'Clube criado com sucesso...');
     }
 
     /**
@@ -80,5 +103,20 @@ class ClubController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function validatorClubs($request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'initials' => 'required',
+        ]);
+
+        $validator->setAttributeNames([
+            'name' => 'Nome',
+            'initials' => 'Sigla',
+        ]);
+
+        return $validator;
     }
 }

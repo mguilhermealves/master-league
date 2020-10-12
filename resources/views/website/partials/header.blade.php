@@ -10,14 +10,14 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Campeonatos</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="{{ Route('nation.index')}}">Nações</a>
-                    <a class="dropdown-item" href="#">Clubes</a>
-                    <a class="dropdown-item" href="#">Posicao Player</a>
+                    <a class="dropdown-item" href="{{ Route('admin.nation.index')}}">Nações</a>
+                    <a class="dropdown-item" href="{{ Route('admin.club.index')}}">Clubes</a>
+                    <a class="dropdown-item" href="{{ Route('admin.playerposition.index')}}">Posição Jogadores</a>
                     <a class="dropdown-item" href="#">Jogadores</a>
                 </div>
             </li>

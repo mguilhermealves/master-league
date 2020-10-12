@@ -16,11 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 
 //NATION
-Route::get('/nation', 'NationController@index')->name('nation.index');
-Route::get('/nation/create', 'NationController@create')->name('nation.create');
-Route::post('/nation/store', 'NationController@store')->name('nation.store');
+Route::get('admin/nation', 'NationController@index')->name('admin.nation.index');
+Route::get('admin/nation/create', 'NationController@create')->name('admin.nation.create');
+Route::post('admin/nation/store', 'NationController@store')->name('admin.nation.store');
 
 //CLUBS
-Route::get('/clubs', 'ClubController@index')->name('clubs.index');
-Route::get('/clubs/create', 'ClubController@create')->name('clubs.create');
-Route::post('/clubs/store', 'ClubController@store')->name('clubs.store');
+Route::get('admin/clubs', 'ClubController@index')->name('admin.club.index');
+Route::get('admin/clubs/create', 'ClubController@create')->name('admin.club.create');
+Route::post('admin/clubs/store', 'ClubController@store')->name('admin.club.store');
+
+//CLUBS
+Route::get('admin/playerposition', 'PlayerPositionController@index')->name('admin.playerposition.index');
+Route::get('admin/playerposition/create', 'PlayerPositionController@create')->name('admin.playerposition.create');
+Route::post('admin/playerposition/store', 'PlayerPositionController@store')->name('admin.playerposition.store');
