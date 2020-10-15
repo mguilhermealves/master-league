@@ -25,7 +25,12 @@ Route::get('admin/clubs', 'ClubController@index')->name('admin.club.index');
 Route::get('admin/clubs/create', 'ClubController@create')->name('admin.club.create');
 Route::post('admin/clubs/store', 'ClubController@store')->name('admin.club.store');
 
-//CLUBS
+//PLAYER POSITION
 Route::get('admin/playerposition', 'PlayerPositionController@index')->name('admin.playerposition.index');
 Route::get('admin/playerposition/create', 'PlayerPositionController@create')->name('admin.playerposition.create');
 Route::post('admin/playerposition/store', 'PlayerPositionController@store')->name('admin.playerposition.store');
+
+//PLAYER
+Route::get('admin/player', 'PlayerController@index')->name('admin.player.index');
+Route::get('admin/player/create', 'PlayerController@create')->name('admin.player.create');
+Route::post('admin/player/store', 'PlayerController@store')->name('admin.player.store');

@@ -3,11 +3,18 @@
 @section('title', '- Criar Posição')
     
 @section('content')
+    @if ($errors->any())    
+        <div class="alert alert-danger" role="alert">
+            @foreach ($errors->all() as $error)
+                {{$error}} <br />
+            @endforeach
+        </div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h1>Criar Posição</h1>
-                <form class="form" action="{{ route('admin.nation.store') }}" method="post">
+                <form class="form" action="{{ route('admin.playerposition.store') }}" method="post">
                     @csrf
 
                     <div class="form-group">

@@ -15,8 +15,8 @@ class Club extends Model
         'name', 'initials', 'nation_id', 'user_id'
     ];
 
-    public function Nationality()
+    public function nationality_club()
     {
-        return $this->hasOne(Nationality::class, 'nation_id');
+        return $this->hasOne(Nationality::class, 'id', 'nation_id');
     }
 }

@@ -1,15 +1,8 @@
 @extends('website.layouts.app')
 
-@section('title', ' - Nação')
+@section('title', ' - Posição de Jogadores')
     
 @section('content')
-    @if ($errors->any())
-    <div class="alert alert-danger" role="alert">
-        @foreach ($errors->all() as $error)
-            {{$error}} <br />
-        @endforeach
-    </div>
-    @endif
     @if (session('message'))
       <div class="alert alert-success" role="alert">
         {{session('message')}}
@@ -20,7 +13,7 @@
             <div class="col-12">
                 <h1>Posição do Jogador</h1>
 
-                <a class="btn btn-primary" href="{{ Route('admin.nation.create') }}">Criar Posição</a>
+                <a class="btn btn-primary" href="{{ Route('admin.playerposition.create') }}">Criar Posição</a>
 
                 <br>
 
@@ -34,14 +27,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @forelse ($nations as $nation)
+                        @forelse ($positions as $position)
                             <tr>
-                                <td>{{ $nation->name }}</td>
-                                <td>{{ $nation->initials }}</td>
+                                <td>{{ $position->name }}</td>
+                                <td>{{ $position->initials }}</td>
                             </tr>
                         @empty
                             <td colspan="2">Nenhuma nação criada...</td>
-                        @endforelse --}}
+                        @endforelse
                     </tbody>
                 </table>
             </div>

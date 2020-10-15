@@ -32,7 +32,7 @@
                             <tr>
                                 <td>{{ $club->name }}</td>
                                 <td>{{ $club->initials }}</td>
-                                <td>{{ $club->user_id }}</td>
+                                <td>{{ $club->nationality_club['initials'] }}</td>
                             </tr>
                         @empty
                             <td colspan="3">Nenhum clube criado...</td>

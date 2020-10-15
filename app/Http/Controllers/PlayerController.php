@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PlayerPosition;
+use App\{Player, Nationality, PlayerPosition};
 use Validator;
 
-class PlayerPositionController extends Controller
+class PlayerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,13 @@ class PlayerPositionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $positions = PlayerPosition::all();
+    {   
+        $players = Player::with('nationality_player')
+            ->with('position_player')
+            ->get();
 
-        return view('website.pages.player_position.playerposition_index', compact([
-            'positions',
+        return view ('website.pages.player.player_index', compact([
+            'players',
         ]));
     }
 
@@ -29,7 +31,14 @@ class PlayerPositionController extends Controller
      */
     public function create()
     {
-        return view('website.pages.player_position.playerposition_create');
+        $nations = Nationality::all();
+
+        $positions = PlayerPosition::All();
+
+        return view('website.pages.player.player_create', compact([
+            'nations',
+            'positions'
+        ]));
     }
 
     /**
@@ -40,19 +49,21 @@ class PlayerPositionController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $this->validatorPositions($request);
+        $validator = $this->validatorPlayer($request);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
         }
 
-        $dataPosition = $request->all();
+        $dataPlayer = $request->all();
 
-        PlayerPosition::create([
-            'name' => $dataPosition['name'],
-            'initials'=> $dataPosition['initials'],
+        Player::create([
+            'name' => $dataPlayer['name'],
+            'overall' => $dataPlayer['overall'],
+            'position_id' => $dataPlayer['position_id'],
+            'nation_id' => $dataPlayer['nation_id'],
         ]);
 
-        return redirect()->route('admin.playerposition.index')->with('message','Posição criada com sucesso...');
+        return redirect()->route('admin.player.index')->with('message', 'Jogador criado com sucesso...');
     }
 
     /**
@@ -100,16 +111,20 @@ class PlayerPositionController extends Controller
         //
     }
 
-    protected function validatorPositions($request)
+    protected function validatorPlayer($request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'initials' => 'required',
+            'overall' => 'required|min:0|max:95',
+            'position_id' => 'required',
+            'nation_id' => 'required',
         ]);
 
         $validator->setAttributeNames([
             'name' => 'Nome',
-            'initials' => 'Sigla',
+            'overall' => 'Overall',
+            'position_id' => 'Posição',
+            'nation_id' => 'Nacionalidade',
         ]);
 
         return $validator;

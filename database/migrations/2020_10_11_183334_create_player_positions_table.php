@@ -16,7 +16,7 @@ class CreatePlayerPositionsTable extends Migration
         Schema::create('player_positions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('initals');
+            $table->string('initials');
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@
                     <a class="dropdown-item" href="{{ Route('admin.nation.index')}}">Nações</a>
                     <a class="dropdown-item" href="{{ Route('admin.club.index')}}">Clubes</a>
                     <a class="dropdown-item" href="{{ Route('admin.playerposition.index')}}">Posição Jogadores</a>
-                    <a class="dropdown-item" href="#">Jogadores</a>
+                    <a class="dropdown-item" href="{{ Route('admin.player.index')}}">Jogadores</a>
                 </div>
             </li>
         </ul>
